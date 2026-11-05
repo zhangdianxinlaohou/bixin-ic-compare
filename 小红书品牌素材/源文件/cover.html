@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 1200px;
+        height: 1600px;
+        margin: 0;
+        overflow: hidden;
+        background: #081120;
+        font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+      }
+
+      .poster {
+        position: relative;
+        width: 1200px;
+        height: 1600px;
+        padding: 70px 76px 54px;
+        overflow: hidden;
+        color: #f7fbff;
+        background:
+          radial-gradient(circle at 86% 9%, rgba(63, 109, 255, 0.4), transparent 29%),
+          radial-gradient(circle at 10% 88%, rgba(49, 206, 163, 0.15), transparent 31%),
+          linear-gradient(150deg, #0b1427 0%, #08111f 58%, #0b172b 100%);
+      }
+
+      .grid {
+        position: absolute;
+        inset: 0;
+        opacity: 0.42;
+        background-image:
+          linear-gradient(rgba(141, 220, 255, 0.075) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(141, 220, 255, 0.075) 1px, transparent 1px);
+        background-size: 56px 56px;
+        mask-image: radial-gradient(ellipse 92% 76% at 52% 38%, #000 0%, transparent 78%);
+        -webkit-mask-image: radial-gradient(ellipse 92% 76% at 52% 38%, #000 0%, transparent 78%);
+      }
+
+      .halo {
+        position: absolute;
+        top: -210px;
+        right: -170px;
+        width: 720px;
+        height: 720px;
+        border: 1px solid rgba(141, 220, 255, 0.15);
+        border-radius: 50%;
+      }
+
+      .halo::before,
+      .halo::after {
+        position: absolute;
+        border: 1px solid rgba(141, 220, 255, 0.09);
+        border-radius: 50%;
+        content: "";
+      }
+
+      .halo::before {
+        inset: 90px;
+      }
+
+      .halo::after {
+        inset: 200px;
+      }
+
+      .topbar {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 17px;
+      }
+
+      .brand-mark {
+        position: relative;
+        display: flex;
+        width: 67px;
+        height: 67px;
+        align-items: center;
+        justify-content: center;
+        border: 1.5px solid rgba(120, 240, 193, 0.52);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.055);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.11);
+      }
+
+      .mini-package {
+        position: relative;
+        width: 38px;
+        height: 38px;
+        border: 1.4px solid rgba(141, 220, 255, 0.62);
+        border-radius: 8px;
+        background: linear-gradient(150deg, #172a49, #0a1830);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      }
+
+      .mini-package::before,
+      .mini-package::after {
+        position: absolute;
+        right: 5px;
+        left: 5px;
+        height: 2px;
+        background: repeating-linear-gradient(
+          90deg,
+          #9eafc2 0 3px,
+          transparent 3px 7px
+        );
+        content: "";
+      }
+
+      .mini-package::before {
+        top: -4px;
+      }
+
+      .mini-package::after {
+        bottom: -4px;
+      }
+
+      .mini-die {
+        position: absolute;
+        inset: 8px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 2.5px;
+        padding: 3px;
+        border: 1px solid rgba(141, 220, 255, 0.3);
+        border-radius: 3px;
+        background: #0b1930;
+      }
+
+      .mini-die i {
+        display: block;
+        width: 4px;
+        border-radius: 1.5px 1.5px 0.5px 0.5px;
+      }
+
+      .mini-die i:nth-child(1) {
+        height: 7px;
+        background: #78f0c1;
+      }
+
+      .mini-die i:nth-child(2) {
+        height: 12px;
+        background: #6bcfff;
+      }
+
+      .mini-die i:nth-child(3) {
+        height: 17px;
+        background: #a593ff;
+      }
+
+      .brand-copy strong {
+        display: block;
+        font-size: 31px;
+        font-weight: 800;
+        letter-spacing: -0.035em;
+      }
+
+      .brand-copy span {
+        display: block;
+        margin-top: 5px;
+        color: rgba(220, 231, 250, 0.5);
+        font-size: 16px;
+        letter-spacing: 0.09em;
+      }
+
+      .top-badge {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-left: auto;
+        padding: 12px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.05);
+        color: rgba(234, 241, 252, 0.76);
+        font-size: 17px;
+        font-weight: 600;
+      }
+
+      .top-badge i {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #78f0c1;
+        box-shadow: 0 0 16px rgba(120, 240, 193, 0.8);
+      }
+
+      .hero {
+        position: relative;
+        z-index: 2;
+        margin-top: 100px;
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin: 0;
+        color: #8ddcff;
+        font-family: "Bahnschrift", "Segoe UI", sans-serif;
+        font-size: 19px;
+        font-weight: 650;
+        letter-spacing: 0.23em;
+      }
+
+      .eyebrow::before {
+        width: 40px;
+        height: 2px;
+        background: #8ddcff;
+        content: "";
+      }
+
+      h1 {
+        margin: 30px 0 16px;
+        font-size: 225px;
+        font-weight: 900;
+        letter-spacing: -0.075em;
+        line-height: 0.92;
+      }
+
+      h1 span {
+        background: linear-gradient(150deg, #78f0c1 8%, #8ddcff 55%, #b9a8ff 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .subhead {
+        margin: 0;
+        color: #f7fbff;
+        font-size: 68px;
+        font-weight: 760;
+        letter-spacing: -0.055em;
+        line-height: 1.08;
+      }
+
+      .subhead span {
+        background: linear-gradient(150deg, #78f0c1 4%, #8ddcff 58%, #b9a8ff 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .description {
+        width: 790px;
+        margin: 25px 0 0;
+        color: rgba(220, 231, 250, 0.58);
+        font-size: 29px;
+        line-height: 1.62;
+      }
+
+      .feature-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .feature-chip {
+        padding: 10px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.045);
+        color: rgba(231, 239, 251, 0.72);
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .mirror {
+        position: absolute;
+        top: 250px;
+        right: 54px;
+        z-index: 1;
+        width: 310px;
+        height: 310px;
+        border: 1px solid rgba(141, 220, 255, 0.24);
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 50% 45%, rgba(120, 240, 193, 0.07), transparent 43%),
+          radial-gradient(circle at 50% 50%, rgba(63, 109, 255, 0.15), transparent 64%);
+        box-shadow:
+          inset 0 0 40px rgba(141, 220, 255, 0.06),
+          0 0 80px rgba(63, 109, 255, 0.1);
+        opacity: 0.82;
+      }
+
+      .mirror::before {
+        position: absolute;
+        inset: 28px;
+        border: 1px dashed rgba(141, 220, 255, 0.18);
+        border-radius: 50%;
+        content: "";
+      }
+
+      .mirror::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 150%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(120, 240, 193, 0.55), transparent);
+        content: "";
+        transform: translate(-50%, -50%) rotate(-28deg);
+      }
+
+      .mirror-core {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: flex;
+        width: 120px;
+        height: 120px;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 9px;
+        padding: 22px;
+        border: 1px solid rgba(141, 220, 255, 0.3);
+        border-radius: 28px;
+        background: rgba(8, 17, 32, 0.72);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        transform: translate(-50%, -50%) rotate(8deg);
+      }
+
+      .mirror-core span {
+        width: 15px;
+        border-radius: 5px 5px 2px 2px;
+      }
+
+      .mirror-core span:nth-child(1) {
+        height: 26px;
+        background: #78f0c1;
+      }
+
+      .mirror-core span:nth-child(2) {
+        height: 46px;
+        background: #6bcfff;
+      }
+
+      .mirror-core span:nth-child(3) {
+        height: 66px;
+        background: #a593ff;
+      }
+
+      .demo-card {
+        position: absolute;
+        right: 76px;
+        bottom: 88px;
+        left: 76px;
+        z-index: 2;
+        height: 693px;
+        padding: 34px 36px 30px;
+        border: 1px solid rgba(255, 255, 255, 0.62);
+        border-radius: 34px;
+        background:
+          radial-gradient(circle at 101% 0%, rgba(120, 240, 193, 0.12), transparent 35%),
+          #f7f9f5;
+        box-shadow:
+          0 42px 100px rgba(0, 0, 0, 0.34),
+          inset 0 1px 0 #fff;
+        color: #0c1729;
+      }
+
+      .demo-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+
+      .demo-kicker {
+        margin: 0 0 7px;
+        color: #7e8898;
+        font-family: "Bahnschrift", "Segoe UI", sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+      }
+
+      .demo-head h2 {
+        margin: 0;
+        font-size: 31px;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+
+      .demo-badges {
+        display: flex;
+        gap: 8px;
+      }
+
+      .demo-badge {
+        padding: 9px 13px;
+        border: 1px solid #dfe4eb;
+        border-radius: 999px;
+        background: #fff;
+        color: #737d8f;
+        font-size: 14px;
+        font-weight: 650;
+      }
+
+      .demo-badge.strong {
+        border-color: #0c1729;
+        background: #0c1729;
+        color: #fff;
+      }
+
+      .company-head {
+        display: grid;
+        grid-template-columns: 218px repeat(3, 1fr);
+        gap: 10px;
+        align-items: end;
+        margin-top: 23px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #e2e6eb;
+      }
+
+      .company-empty {
+        color: #939baa;
+        font-family: "Bahnschrift", "Segoe UI", sans-serif;
+        font-size: 13px;
+        letter-spacing: 0.05em;
+      }
+
+      .company-cell {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .company-mark {
+        display: flex;
+        width: 42px;
+        height: 42px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 11px;
+        background: #eaf0ff;
+        color: #2349b8;
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .company-cell:nth-child(3) .company-mark {
+        background: #fff0ed;
+        color: #b24436;
+      }
+
+      .company-cell:nth-child(4) .company-mark {
+        background: #e5f8f2;
+        color: #08735a;
+      }
+
+      .company-cell strong {
+        display: block;
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+      }
+
+      .company-cell small {
+        display: block;
+        margin-top: 5px;
+        color: #929aa8;
+        font-family: "Bahnschrift", "Segoe UI", sans-serif;
+        font-size: 12px;
+      }
+
+      .metric-grid {
+        display: grid;
+        grid-template-columns: 218px repeat(3, 1fr);
+        gap: 0 10px;
+      }
+
+      .metric-label,
+      .metric-value {
+        padding: 13px 0;
+        border-bottom: 1px solid #eef1f4;
+      }
+
+      .metric-label {
+        color: #566176;
+        font-size: 15px;
+        font-weight: 650;
+      }
+
+      .metric-label small {
+        display: block;
+        margin-top: 3px;
+        color: #a0a7b4;
+        font-size: 11px;
+        font-weight: 500;
+      }
+
+      .metric-value strong {
+        display: block;
+        font-family: "Bahnschrift", "Segoe UI", sans-serif;
+        font-size: 23px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+      }
+
+      .metric-value strong.negative {
+        color: #d45c4c;
+      }
+
+      .mini-bar {
+        height: 4px;
+        margin-top: 8px;
+        border-radius: 99px;
+        background: #edf0f4;
+        overflow: hidden;
+      }
+
+      .mini-bar span {
+        display: block;
+        height: 100%;
+        border-radius: inherit;
+        background: #8ea9fb;
+      }
+
+      .chart-strip {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-top: 18px;
+      }
+
+      .chart-copy {
+        width: 168px;
+        flex: 0 0 auto;
+      }
+
+      .chart-copy strong {
+        display: block;
+        font-size: 15px;
+        font-weight: 750;
+      }
+
+      .chart-copy span {
+        display: block;
+        margin-top: 4px;
+        color: #959dab;
+        font-size: 11px;
+      }
+
+      .sparkline {
+        width: 100%;
+        height: 78px;
+      }
+
+      .footer-line {
+        position: absolute;
+        right: 76px;
+        bottom: 38px;
+        left: 76px;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: rgba(219, 231, 250, 0.36);
+        font-family: "Bahnschrift", "Segoe UI", sans-serif;
+        font-size: 13px;
+        letter-spacing: 0.09em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="poster">
+      <div class="grid"></div>
+      <div class="halo"></div>
+      <div class="mirror" aria-hidden="true">
+        <div class="mirror-core"><span></span><span></span><span></span></div>
+      </div>
+
+      <div class="topbar">
+        <div class="brand">
+          <div class="brand-mark">
+            <span class="mini-package">
+              <span class="mini-die"><i></i><i></i><i></i></span>
+            </span>
+          </div>
+          <div class="brand-copy">
+            <strong>比芯</strong>
+            <span>CHIP COMPANY REALITY CHECK</span>
+          </div>
+        </div>
+        <div class="top-badge"><i></i>200+ 家半导体公司</div>
+      </div>
+
+      <div class="hero">
+        <p class="eyebrow">CHIP COMPANY REALITY CHECK</p>
+        <h1><span>比</span>芯</h1>
+        <p class="subhead">芯片公司的<span>照妖镜</span></p>
+        <p class="description">
+          产品、指标、趋势，一照便知。不翻十份财报，也能看清一家芯片公司。
+        </p>
+        <div class="feature-row">
+          <span class="feature-chip">产品矩阵</span>
+          <span class="feature-chip">核心指标</span>
+          <span class="feature-chip">历年趋势</span>
+          <span class="feature-chip">同比 / 环比</span>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <div class="demo-head">
+          <div>
+            <p class="demo-kicker">YOUR SHORTLIST</p>
+            <h2>把芯片公司放在同一张表上</h2>
+          </div>
+          <div class="demo-badges">
+            <span class="demo-badge">3 / 5</span>
+            <span class="demo-badge strong">2025 年报</span>
+          </div>
+        </div>
+
+        <div class="company-head">
+          <span class="company-empty">METRIC / COMPANY</span>
+          <div class="company-cell">
+            <span class="company-mark">圣邦</span>
+            <div><strong>圣邦股份</strong><small>300661</small></div>
+          </div>
+          <div class="company-cell">
+            <span class="company-mark">思瑞</span>
+            <div><strong>思瑞浦</strong><small>688536</small></div>
+          </div>
+          <div class="company-cell">
+            <span class="company-mark">纳芯</span>
+            <div><strong>纳芯微</strong><small>688052</small></div>
+          </div>
+        </div>
+
+        <div class="metric-grid">
+          <div class="metric-label">营业收入<small>单位：亿元</small></div>
+          <div class="metric-value">
+            <strong>38.98</strong><div class="mini-bar"><span style="width:100%"></span></div>
+          </div>
+          <div class="metric-value">
+            <strong>21.42</strong><div class="mini-bar"><span style="width:55%"></span></div>
+          </div>
+          <div class="metric-value">
+            <strong>33.68</strong><div class="mini-bar"><span style="width:86%"></span></div>
+          </div>
+
+          <div class="metric-label">毛利率<small>毛利 ÷ 营收</small></div>
+          <div class="metric-value">
+            <strong>50.9%</strong><div class="mini-bar"><span style="width:100%"></span></div>
+          </div>
+          <div class="metric-value">
+            <strong>46.6%</strong><div class="mini-bar"><span style="width:92%"></span></div>
+          </div>
+          <div class="metric-value">
+            <strong>35.0%</strong><div class="mini-bar"><span style="width:69%"></span></div>
+          </div>
+
+          <div class="metric-label">净利润<small>归母净利润</small></div>
+          <div class="metric-value">
+            <strong>5.47</strong><div class="mini-bar"><span style="width:100%"></span></div>
+          </div>
+          <div class="metric-value">
+            <strong>1.73</strong><div class="mini-bar"><span style="width:32%"></span></div>
+          </div>
+          <div class="metric-value">
+            <strong class="negative">−2.29</strong><div class="mini-bar"><span style="width:42%"></span></div>
+          </div>
+
+          <div class="metric-label">研发强度<small>研发费用 ÷ 营收</small></div>
+          <div class="metric-value">
+            <strong>26.8%</strong><div class="mini-bar"><span style="width:97%"></span></div>
+          </div>
+          <div class="metric-value">
+            <strong>27.5%</strong><div class="mini-bar"><span style="width:100%"></span></div>
+          </div>
+          <div class="metric-value">
+            <strong>23.6%</strong><div class="mini-bar"><span style="width:86%"></span></div>
+          </div>
+        </div>
+
+        <div class="chart-strip">
+          <div class="chart-copy">
+            <strong>近年表现</strong>
+            <span>年度 / 单季度</span>
+          </div>
+          <svg class="sparkline" viewBox="0 0 760 80" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M4 62 C80 54, 110 68, 166 47 S258 37, 310 42 S390 20, 454 26 S550 12, 610 8 S700 16, 756 4" fill="none" stroke="#3565ff" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M4 70 C70 66, 120 60, 170 66 S262 53, 320 58 S402 39, 468 45 S556 24, 616 30 S710 22, 756 17" fill="none" stroke="#df604f" stroke-width="3.2" stroke-linecap="round" opacity="0.9"/>
+            <path d="M4 58 C80 48, 126 58, 172 43 S256 47, 310 38 S388 54, 454 42 S548 40, 610 34 S702 38, 756 24" fill="none" stroke="#0e9f7a" stroke-width="3.2" stroke-linecap="round" opacity="0.9"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="footer-line">
+        <span>SEE IT CLEAR · COMPARE SMART</span>
+        <span>2021 — 2026Q3</span>
+      </div>
+    </div>
+  </body>
+</html>

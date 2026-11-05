@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="zh-CN" class="xhs-document">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="比芯：芯片公司的照妖镜。搜索并对比半导体公司的产品矩阵、核心指标和历史趋势。"
+    />
+    <meta name="theme-color" content="#0c1427" />
+    <title>比芯 · 小红书版</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%230c1427'/%3E%3Cpath d='M14 16h12v32H14zM38 16h12v32H38zM26 29h12v7H26z' fill='%2378f0c1'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="xiaohongshu.css" />
+  </head>
+  <body class="xhs-mode">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#top" aria-label="比芯首页">
+          <span class="brand-symbol" aria-hidden="true">
+            <svg viewBox="0 0 32 32">
+              <path d="M5 7h8v18H5zM19 7h8v18h-8zM13 13h6v6h-6z" />
+            </svg>
+          </span>
+          <span class="brand-text">
+            <strong>比芯</strong>
+            <small>芯片公司的照妖镜</small>
+          </span>
+        </a>
+
+        <nav class="main-nav" aria-label="页面导航">
+          <a href="#compare" class="is-active" data-nav="compare">对比清单</a>
+          <a href="#metrics" data-nav="metrics">核心指标</a>
+          <a href="#history" data-nav="history">近年表现</a>
+        </nav>
+
+        <div class="data-status">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span>数据截至</span>
+          <strong id="headerPeriod">2026 Q3</strong>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="intro" aria-labelledby="intro-title">
+        <div class="intro-bg" aria-hidden="true"></div>
+        <div class="intro-inner">
+          <div class="intro-copy">
+            <p class="eyebrow">
+              <span>A-SHARE SEMICONDUCTOR</span>
+            </p>
+            <h1 id="intro-title">
+              看芯片公司，<br />
+              <span>一张表，几条曲线。</span>
+            </h1>
+          </div>
+
+          <div class="search-card">
+            <div class="search-card-head">
+              <div>
+                <p class="mini-label">COMPANY SEARCH</p>
+                <h2>添加对比公司</h2>
+              </div>
+              <span class="selection-count" id="selectionCount">0 / 8</span>
+            </div>
+
+            <div class="search-shell" id="searchShell">
+              <div class="search-box">
+                <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="10.5" cy="10.5" r="6.5"></circle>
+                  <path d="m15.5 15.5 4.3 4.3"></path>
+                </svg>
+                <input
+                  id="companySearch"
+                  type="search"
+                  placeholder="搜索公司、股票代码或产品..."
+                  autocomplete="off"
+                  spellcheck="false"
+                  aria-label="搜索公司"
+                  aria-controls="searchResults"
+                  aria-expanded="false"
+                />
+                <kbd>Ctrl K</kbd>
+              </div>
+              <div
+                class="search-results"
+                id="searchResults"
+                role="listbox"
+                aria-label="公司搜索结果"
+              ></div>
+            </div>
+
+            <div class="quick-picks" id="quickPicks" aria-label="快捷添加公司"></div>
+            <p class="search-tip">
+              可搜索「电源管理」「射频」「车规」「688」等关键词。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="page">
+        <section class="section" id="compare" aria-labelledby="compare-title">
+          <div class="section-head">
+            <div class="section-index" aria-hidden="true">01</div>
+            <div class="section-title">
+              <p class="mini-label">SHORTLIST</p>
+              <h2 id="compare-title">对比清单</h2>
+            </div>
+            <div class="section-actions">
+              <button class="action-button" id="shareBtn" type="button">
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M8 12 12 8M7 13.5 5.8 14.7a3.1 3.1 0 0 1-4.4-4.4l3-3a3.1 3.1 0 0 1 4.4 0M13 6.5l1.2-1.2a3.1 3.1 0 0 1 4.4 4.4l-3 3a3.1 3.1 0 0 1-4.4 0" />
+                </svg>
+                复制链接
+              </button>
+              <button class="action-button action-button-quiet" id="clearBtn" type="button">
+                清空
+              </button>
+            </div>
+          </div>
+
+          <div class="company-grid" id="companyCards"></div>
+          <div class="empty-state" id="emptyState" hidden>
+            <span class="empty-number" aria-hidden="true">0</span>
+            <div>
+              <h3>还没有加入公司</h3>
+              <p>在上方搜索框里输入公司名称、代码或产品关键词。</p>
+            </div>
+            <button class="primary-button" id="emptyAddBtn" type="button">去搜索公司</button>
+          </div>
+        </section>
+
+        <section class="section" id="metrics" aria-labelledby="metrics-title">
+          <div class="section-head section-head-wrap">
+            <div class="section-index" aria-hidden="true">02</div>
+            <div class="section-title">
+              <p class="mini-label">SIDE BY SIDE</p>
+              <h2 id="metrics-title">核心指标对比</h2>
+            </div>
+            <div class="table-controls">
+              <label class="select-field">
+                <span>频率</span>
+                <select id="tableFrequency" aria-label="选择年度或单季度">
+                  <option value="annual">按年</option>
+                  <option value="quarter">按季度</option>
+                </select>
+              </label>
+              <label class="select-field">
+                <span>报告期</span>
+                <select id="tablePeriod" aria-label="选择报告期"></select>
+              </label>
+              <button class="action-button" id="exportBtn" type="button">
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M10 3v9m0 0 3.4-3.4M10 12 6.6 8.6M4 14.5V17h12v-2.5" />
+                </svg>
+                导出 CSV
+              </button>
+            </div>
+          </div>
+
+          <div class="table-note-row">
+            <p id="tablePeriodNote">年度口径：2025 年报 · 财务单位：亿元 · 薪酬单位：万元 / 年</p>
+            <span>悬停单元格可查看完整口径</span>
+          </div>
+
+          <div class="table-shell">
+            <div class="table-scroll" id="tableScroll">
+              <table id="metricsTable" aria-label="核心指标对比表"></table>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="history" aria-labelledby="history-title">
+          <div class="section-head section-head-wrap">
+            <div class="section-index" aria-hidden="true">03</div>
+            <div class="section-title">
+              <p class="mini-label">TIME SERIES</p>
+              <h2 id="history-title">近年表现</h2>
+            </div>
+            <div class="history-mode-controls">
+              <div class="segmented-control" id="chartTypeToggle" role="group" aria-label="选择图表类型">
+                <button type="button" data-chart-type="line" class="is-active">折线图</button>
+                <button type="button" data-chart-type="bar">柱状图</button>
+              </div>
+              <div class="segmented-control" id="frequencyToggle" role="group" aria-label="选择时间频率">
+                <button type="button" data-frequency="quarter" class="is-active">单季度</button>
+                <button type="button" data-frequency="annual">年度</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="history-toolbar">
+            <div class="metric-picker-head">
+              <div>
+                <p class="mini-label">CHOOSE METRICS</p>
+                <h3>选择要看的指标</h3>
+              </div>
+              <span class="metric-limit"><strong id="metricSelectedCount">3</strong> / 3</span>
+            </div>
+            <div class="metric-picker" id="metricPicker"></div>
+            <div class="history-meta">
+              <span id="historyRange">2021Q1 – 2026Q3</span>
+              <span class="meta-separator" aria-hidden="true"></span>
+              <span id="historyModeNote">每个指标独立成图，避免不同单位混用</span>
+            </div>
+          </div>
+
+          <div class="chart-grid" id="chartGrid"></div>
+          <div class="chart-empty" id="chartEmpty" hidden>
+            <h3>暂无可展示图表</h3>
+            <p>请先添加公司，并至少选择一个可用指标。</p>
+          </div>
+        </section>
+
+      </div>
+      <div class="dataset-total" aria-label="收录公司总数">
+        共收录 <span id="companyTotal">114</span> 家公司
+      </div>
+    </main>
+
+
+    <nav class="xhs-bottom-nav" aria-label="快速导航">
+      <a href="#compare" data-nav="compare" class="is-active">对比</a>
+      <a href="#metrics" data-nav="metrics">指标</a>
+      <a href="#history" data-nav="history">近年</a>
+    </nav>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="data.js"></script>
+    <script src="global_data.js"></script>
+    <script src="vendor/echarts.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

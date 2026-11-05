@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 1024px;
+        height: 1024px;
+        margin: 0;
+        overflow: hidden;
+        background: #081120;
+        font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+      }
+
+      .icon {
+        position: relative;
+        width: 1024px;
+        height: 1024px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 82% 16%, rgba(70, 116, 255, 0.38), transparent 33%),
+          radial-gradient(circle at 18% 82%, rgba(52, 208, 168, 0.2), transparent 34%),
+          linear-gradient(145deg, #0b1427 0%, #08111f 60%, #0b1629 100%);
+      }
+
+      .grid {
+        position: absolute;
+        inset: 0;
+        opacity: 0.45;
+        background-image:
+          linear-gradient(rgba(141, 220, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(141, 220, 255, 0.08) 1px, transparent 1px);
+        background-size: 52px 52px;
+        mask-image: radial-gradient(circle at 50% 50%, #000 0%, transparent 72%);
+        -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 0%, transparent 72%);
+      }
+
+      .circuit {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.55;
+      }
+
+      .frame {
+        position: absolute;
+        inset: 66px;
+        border: 1.5px solid rgba(199, 222, 255, 0.13);
+        border-radius: 230px;
+      }
+
+      .frame::before,
+      .frame::after {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        border: 2px solid rgba(120, 240, 193, 0.86);
+        border-radius: 50%;
+        background: #0b1427;
+        content: "";
+      }
+
+      .frame::before {
+        top: 55px;
+        left: 55px;
+      }
+
+      .frame::after {
+        right: 55px;
+        bottom: 55px;
+      }
+
+      .top-label {
+        position: absolute;
+        top: 118px;
+        right: 0;
+        left: 0;
+        color: rgba(141, 220, 255, 0.72);
+        font-size: 19px;
+        font-weight: 700;
+        letter-spacing: 0.32em;
+        text-align: center;
+      }
+
+      .chip {
+        position: absolute;
+        top: 224px;
+        left: 50%;
+        width: 560px;
+        height: 560px;
+        border: 2px solid rgba(141, 220, 255, 0.28);
+        border-radius: 128px;
+        background:
+          radial-gradient(circle at 50% 18%, rgba(70, 116, 255, 0.22), transparent 48%),
+          linear-gradient(155deg, rgba(19, 35, 67, 0.96), rgba(8, 17, 32, 0.96));
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.1),
+          0 30px 90px rgba(0, 0, 0, 0.36);
+        transform: translateX(-50%);
+        overflow: hidden;
+      }
+
+      .chip::before {
+        position: absolute;
+        inset: 27px;
+        border: 1px solid rgba(141, 220, 255, 0.08);
+        border-radius: 104px;
+        content: "";
+      }
+
+      .chip::after {
+        position: absolute;
+        top: 46px;
+        right: 46px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #78f0c1;
+        box-shadow: 0 0 25px rgba(120, 240, 193, 0.72);
+        content: "";
+      }
+
+      .ic-package {
+        position: absolute;
+        top: 92px;
+        left: 50%;
+        width: 370px;
+        height: 370px;
+        transform: translateX(-50%);
+      }
+
+      .package-body {
+        position: absolute;
+        inset: 38px;
+        border: 2px solid rgba(141, 220, 255, 0.5);
+        border-radius: 44px;
+        background:
+          radial-gradient(circle at 32% 22%, rgba(125, 168, 255, 0.26), transparent 28%),
+          linear-gradient(150deg, #1a2c4c 0%, #0c1930 55%, #101d36 100%);
+        box-shadow:
+          inset 0 2px 0 rgba(255, 255, 255, 0.12),
+          inset 0 -12px 30px rgba(0, 0, 0, 0.26),
+          0 24px 55px rgba(0, 0, 0, 0.28);
+      }
+
+      .package-body::before {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 76px;
+        height: 13px;
+        border-radius: 0 0 10px 10px;
+        background: #081120;
+        content: "";
+        transform: translateX(-50%);
+      }
+
+      .pin1 {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #78f0c1;
+        box-shadow: 0 0 14px rgba(120, 240, 193, 0.65);
+      }
+
+      .pins {
+        position: absolute;
+        display: flex;
+        gap: 17px;
+      }
+
+      .pins span {
+        display: block;
+        border: 1px solid rgba(201, 219, 244, 0.38);
+        background: linear-gradient(180deg, #c2cede, #75879f);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+      }
+
+      .pins-top,
+      .pins-bottom {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .pins-top {
+        top: 0;
+      }
+
+      .pins-bottom {
+        bottom: 0;
+      }
+
+      .pins-top span,
+      .pins-bottom span {
+        width: 12px;
+        height: 40px;
+        border-radius: 5px 5px 2px 2px;
+      }
+
+      .pins-bottom span {
+        border-radius: 2px 2px 5px 5px;
+      }
+
+      .pins-left,
+      .pins-right {
+        top: 50%;
+        flex-direction: column;
+        transform: translateY(-50%);
+      }
+
+      .pins-left {
+        left: 0;
+      }
+
+      .pins-right {
+        right: 0;
+      }
+
+      .pins-left span,
+      .pins-right span {
+        width: 40px;
+        height: 12px;
+        border-radius: 5px 2px 2px 5px;
+      }
+
+      .pins-right span {
+        border-radius: 2px 5px 5px 2px;
+      }
+
+      .die {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 166px;
+        height: 166px;
+        border: 1px solid rgba(141, 220, 255, 0.4);
+        border-radius: 22px;
+        background:
+          linear-gradient(rgba(141, 220, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(141, 220, 255, 0.08) 1px, transparent 1px),
+          radial-gradient(circle at 50% 15%, rgba(98, 141, 255, 0.34), transparent 62%),
+          #0b1930;
+        background-size: 17px 17px, 17px 17px, auto, auto;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.1),
+          0 0 28px rgba(74, 135, 255, 0.16);
+        transform: translate(-50%, -50%);
+      }
+
+      .die-bars {
+        position: absolute;
+        bottom: 21px;
+        left: 50%;
+        display: flex;
+        align-items: flex-end;
+        gap: 15px;
+        transform: translateX(-50%);
+      }
+
+      .die-bars span {
+        display: block;
+        width: 22px;
+        border-radius: 7px 7px 3px 3px;
+        box-shadow: 0 5px 14px rgba(0, 0, 0, 0.2);
+      }
+
+      .die-bars span:nth-child(1) {
+        height: 40px;
+        background: #78f0c1;
+      }
+
+      .die-bars span:nth-child(2) {
+        height: 70px;
+        background: #6bcfff;
+      }
+
+      .die-bars span:nth-child(3) {
+        height: 106px;
+        background: #a593ff;
+      }
+
+      .bottom-label {
+        position: absolute;
+        right: 0;
+        bottom: 104px;
+        left: 0;
+        color: rgba(240, 247, 255, 0.68);
+        font-family: "Bahnschrift", "Segoe UI", sans-serif;
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: 0.35em;
+        text-align: center;
+      }
+
+      .accent-line {
+        position: absolute;
+        bottom: 150px;
+        left: 50%;
+        width: 150px;
+        height: 4px;
+        border-radius: 4px;
+        background: linear-gradient(90deg, transparent, #78f0c1, #6bcfff, transparent);
+        transform: translateX(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="icon">
+      <div class="grid"></div>
+      <svg class="circuit" viewBox="0 0 1024 1024" aria-hidden="true">
+        <g fill="none" stroke="rgba(141,220,255,0.22)" stroke-width="1.4">
+          <path d="M80 268h112l44 44h108" />
+          <path d="M76 744h124l62-62h92" />
+          <path d="M944 290H828l-48 48h-104" />
+          <path d="M946 756H818l-62-62h-92" />
+        </g>
+        <g fill="rgba(120,240,193,0.7)">
+          <circle cx="344" cy="312" r="4" />
+          <circle cx="354" cy="682" r="4" />
+          <circle cx="676" cy="338" r="4" />
+          <circle cx="664" cy="694" r="4" />
+        </g>
+      </svg>
+      <div class="frame"></div>
+      <div class="top-label">IC COMPANY COMPARE</div>
+      <div class="chip">
+        <div class="ic-package">
+          <div class="pins pins-top">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="pins pins-right">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="pins pins-bottom">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="pins pins-left">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="package-body">
+            <span class="pin1"></span>
+            <div class="die">
+              <div class="die-bars"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accent-line"></div>
+      <div class="bottom-label">BENCHMARK · SIMPLE · FAST</div>
+    </div>
+  </body>
+</html>

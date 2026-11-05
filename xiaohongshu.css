@@ -1,0 +1,654 @@
+html.xhs-document {
+  scroll-padding-top: 76px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body.xhs-mode {
+  min-width: 320px;
+  background: #e8ece5;
+  font-size: 15px;
+}
+
+body.xhs-mode .site-shell {
+  width: min(100%, 520px);
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding-bottom: calc(72px + env(safe-area-inset-bottom));
+  background: #f3f5f0;
+  box-shadow: 0 0 60px rgba(17, 31, 47, 0.09);
+}
+
+.xhs-mode .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  padding-top: env(safe-area-inset-top);
+  background: rgba(248, 250, 246, 0.96);
+  backdrop-filter: blur(18px);
+}
+
+.xhs-mode .header-inner {
+  width: calc(100% - 28px);
+  height: 60px;
+}
+
+.xhs-mode .brand-symbol {
+  width: 37px;
+  height: 37px;
+  border-radius: 11px;
+}
+
+.xhs-mode .brand-text strong {
+  font-size: 15px;
+}
+
+.xhs-mode .brand-text small {
+  display: block;
+  margin-top: 3px;
+  font-size: 8.5px;
+}
+
+.xhs-mode .main-nav {
+  display: none;
+}
+
+.xhs-mode .data-status {
+  font-size: 11px;
+}
+
+.xhs-mode .data-status strong {
+  font-size: 11px;
+}
+
+.xhs-mode .intro {
+  border-bottom: 0;
+}
+
+.xhs-mode .intro-inner {
+  display: block;
+  width: calc(100% - 28px);
+  min-height: 0;
+  padding: 30px 0 20px;
+}
+
+.xhs-mode .eyebrow {
+  margin-bottom: 16px;
+  font-size: 9px;
+}
+
+.xhs-mode .intro h1 {
+  font-size: clamp(35px, 9.4vw, 43px);
+  line-height: 1.06;
+}
+
+.xhs-mode .intro h1 span::after {
+  bottom: 4px;
+  height: 8px;
+}
+
+.xhs-mode .search-card {
+  width: 100%;
+  max-width: none;
+  margin-top: 27px;
+  padding: 18px;
+  border-radius: 21px;
+}
+
+.xhs-mode .search-card-head {
+  margin-bottom: 15px;
+}
+
+.xhs-mode .search-card-head h2 {
+  font-size: 21px;
+}
+
+.xhs-mode .mini-label {
+  font-size: 9px;
+}
+
+.xhs-mode .selection-count {
+  padding: 7px 10px;
+  font-size: 10px;
+}
+
+.xhs-mode .search-box {
+  height: 56px;
+  padding: 0 14px;
+}
+
+.xhs-mode .search-box input {
+  font-size: 16px;
+}
+
+.xhs-mode .search-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.xhs-mode .search-box kbd {
+  display: none;
+}
+
+.xhs-mode .search-results {
+  top: calc(100% + 8px);
+  max-height: 45dvh;
+  border-radius: 16px;
+}
+
+.xhs-mode .search-results-label {
+  font-size: 9.5px;
+}
+
+.xhs-mode .search-category {
+  padding: 10px 10px 6px;
+  font-size: 10px;
+}
+
+.xhs-mode .search-category-count {
+  font-size: 9px;
+}
+
+.xhs-mode .search-result {
+  gap: 11px;
+  padding: 11px 9px;
+}
+
+.xhs-mode .result-mark {
+  width: 40px;
+  height: 40px;
+  font-size: 12px;
+}
+
+.xhs-mode .result-title strong {
+  font-size: 14px;
+}
+
+.xhs-mode .result-title em {
+  font-size: 10px;
+}
+
+.xhs-mode .result-main small {
+  font-size: 10.5px;
+}
+
+.xhs-mode .result-action {
+  font-size: 11px;
+}
+
+.xhs-mode .quick-add {
+  gap: 7px;
+  margin-top: 14px;
+}
+
+.xhs-mode .quick-add-label {
+  font-size: 10.5px;
+}
+
+.xhs-mode .quick-chip {
+  min-height: 32px;
+  padding: 7px 10px;
+  font-size: 11px;
+}
+
+.xhs-mode .search-tip {
+  margin-top: 13px;
+  font-size: 10px;
+}
+
+.xhs-mode .page {
+  width: calc(100% - 28px);
+  padding-bottom: 28px;
+}
+
+.xhs-mode .section {
+  padding-top: 36px;
+}
+
+.xhs-mode .section-head {
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.xhs-mode .section-index {
+  width: 30px;
+  height: 30px;
+  font-size: 9px;
+}
+
+.xhs-mode .section-title h2 {
+  font-size: 27px;
+}
+
+.xhs-mode .section-note {
+  font-size: 10.5px;
+  line-height: 1.6;
+}
+
+.xhs-mode .section-actions,
+.xhs-mode .table-controls,
+.xhs-mode .history-mode-controls {
+  width: 100%;
+  margin-left: 0;
+}
+
+.xhs-mode .section-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+}
+
+.xhs-mode .action-button {
+  min-height: 40px;
+  padding: 9px 12px;
+  font-size: 12px;
+}
+
+.xhs-mode .action-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.xhs-mode .company-grid {
+  display: flex;
+  gap: 12px;
+  margin-right: -14px;
+  padding: 0 14px 8px 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.xhs-mode .company-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.xhs-mode .company-card {
+  flex: 0 0 82%;
+  min-height: 286px;
+  padding: 19px;
+  scroll-snap-align: start;
+}
+
+.xhs-mode .company-card:hover {
+  transform: none;
+}
+
+.xhs-mode .company-mark {
+  width: 45px;
+  height: 45px;
+  font-size: 15px;
+}
+
+.xhs-mode .card-name h3 {
+  font-size: 18px;
+}
+
+.xhs-mode .card-subline {
+  font-size: 10px;
+}
+
+.xhs-mode .remove-button {
+  width: 32px;
+  height: 32px;
+}
+
+.xhs-mode .company-desc {
+  min-height: 0;
+  margin: 15px 0 14px;
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+
+.xhs-mode .tag-label,
+.xhs-mode .product-label {
+  font-size: 9px;
+}
+
+.xhs-mode .product-tag {
+  padding: 5px 7px;
+  font-size: 10.5px;
+}
+
+.xhs-mode .category-pill {
+  margin-top: 11px;
+  padding: 5px 8px;
+  font-size: 10px;
+}
+
+.xhs-mode .card-metrics {
+  margin-top: 16px;
+  padding-top: 13px;
+}
+
+.xhs-mode .card-metric span {
+  font-size: 9.5px;
+}
+
+.xhs-mode .card-metric strong {
+  font-size: 19px;
+}
+
+.xhs-mode .card-metric strong small {
+  font-size: 9px;
+}
+
+.xhs-mode .segment-pill,
+.xhs-mode .jump-metrics {
+  font-size: 10px;
+}
+
+.xhs-mode .empty-state {
+  padding: 26px 20px;
+}
+
+.xhs-mode .empty-state h3 {
+  font-size: 18px;
+}
+
+.xhs-mode .empty-state p {
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.xhs-mode .table-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.xhs-mode .select-field {
+  flex: 1 1 calc(50% - 4px);
+  min-height: 42px;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.xhs-mode .select-field > span {
+  font-size: 9.5px;
+}
+
+.xhs-mode .select-field select {
+  max-width: none;
+  font-size: 16px;
+}
+
+.xhs-mode .table-controls .action-button {
+  flex: 1 1 100%;
+}
+
+.xhs-mode .table-note-row {
+  margin-bottom: 9px;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.xhs-mode .table-toolbar {
+  min-height: 48px;
+  padding: 11px 13px;
+}
+
+.xhs-mode .unit-note {
+  font-size: 10px;
+}
+
+.xhs-mode .table-hint {
+  display: none;
+}
+
+.xhs-mode .table-scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
+.xhs-mode #metricsTable thead th:first-child,
+.xhs-mode .metric-label {
+  width: 158px;
+  min-width: 158px;
+  padding: 12px 11px;
+}
+
+.xhs-mode #metricsTable thead th,
+.xhs-mode .metric-cell {
+  width: 156px;
+  min-width: 156px;
+  padding: 11px;
+}
+
+.xhs-mode .table-corner span {
+  font-size: 8.5px;
+}
+
+.xhs-mode .table-corner strong {
+  font-size: 12px;
+}
+
+.xhs-mode .table-company strong {
+  font-size: 11.5px;
+}
+
+.xhs-mode .table-company span {
+  font-size: 9px;
+}
+
+.xhs-mode .metric-group-row td {
+  padding: 9px 11px;
+  font-size: 9px;
+}
+
+.xhs-mode .metric-label strong {
+  font-size: 12px;
+}
+
+.xhs-mode .metric-label span {
+  font-size: 9.5px;
+  line-height: 1.5;
+}
+
+.xhs-mode .value-line strong {
+  font-size: 17px;
+}
+
+.xhs-mode .value-line span {
+  font-size: 9px;
+}
+
+.xhs-mode .history-mode-controls {
+  gap: 8px;
+}
+
+.xhs-mode .segmented-control {
+  flex: 1 1 auto;
+}
+
+.xhs-mode .segmented-control button {
+  flex: 1;
+  min-height: 34px;
+  font-size: 11.5px;
+}
+
+.xhs-mode .history-toolbar {
+  padding: 16px;
+}
+
+.xhs-mode .metric-picker-head h3 {
+  font-size: 15px;
+}
+
+.xhs-mode .metric-limit {
+  font-size: 10px;
+}
+
+.xhs-mode .metric-picker {
+  gap: 7px;
+}
+
+.xhs-mode .metric-chip {
+  flex: 1 1 calc(50% - 7px);
+  min-height: 39px;
+  justify-content: space-between;
+  padding: 8px 9px;
+  font-size: 11px;
+}
+
+.xhs-mode .metric-badge {
+  padding: 2px 4px;
+  font-size: 8px;
+}
+
+.xhs-mode .history-meta {
+  gap: 7px;
+  margin-top: 13px;
+  padding-top: 11px;
+  font-size: 10px;
+}
+
+.xhs-mode .chart-grid {
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.xhs-mode .chart-panel-head {
+  padding: 16px 14px 0;
+}
+
+.xhs-mode .chart-panel-title h3 {
+  font-size: 17px;
+}
+
+.xhs-mode .chart-panel-title span {
+  font-size: 9.5px;
+}
+
+.xhs-mode .chart-panel-period {
+  font-size: 9.5px;
+}
+
+.xhs-mode .growth-basis-toggle button {
+  min-height: 27px;
+  padding: 4px 9px;
+  font-size: 10px;
+}
+
+.xhs-mode .chart-series-toggles {
+  padding: 9px 14px 7px;
+}
+
+.xhs-mode .series-toggle {
+  min-height: 28px;
+  padding: 5px 9px;
+  font-size: 10.5px;
+}
+
+.xhs-mode .series-reset {
+  min-height: 28px;
+  font-size: 10.5px;
+}
+
+.xhs-mode .chart-canvas {
+  height: 334px;
+}
+
+.xhs-mode .chart-floating-tip {
+  min-width: 216px;
+  padding: 12px 14px;
+  font-size: 12px;
+}
+
+.xhs-mode .chart-tip-period {
+  font-size: 11px;
+}
+
+.xhs-mode .chart-tip-row {
+  gap: 14px;
+  padding: 5px 6px;
+}
+
+.xhs-mode .chart-tip-company,
+.xhs-mode .chart-tip-value {
+  font-size: 12px;
+}
+
+.xhs-mode .chart-tip-value small {
+  font-size: 9px;
+}
+
+.xhs-mode .dataset-total {
+  width: calc(100% - 28px);
+  padding-bottom: 18px;
+  font-size: 10px;
+}
+
+.xhs-mode .toast {
+  right: 16px;
+  bottom: calc(82px + env(safe-area-inset-bottom));
+  left: 16px;
+  max-width: none;
+  font-size: 12px;
+  text-align: center;
+}
+
+.xhs-bottom-nav {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 50%;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: min(100%, 520px);
+  padding: 7px 16px calc(8px + env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(204, 212, 219, 0.9);
+  background: rgba(252, 253, 251, 0.96);
+  box-shadow: 0 -12px 30px rgba(21, 35, 58, 0.06);
+  backdrop-filter: blur(18px);
+  transform: translateX(-50%);
+  transition:
+    opacity 150ms ease,
+    transform 150ms ease;
+}
+
+body.xhs-mode.xhs-search-open .xhs-bottom-nav {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 110%);
+}
+
+.xhs-bottom-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  border-radius: 11px;
+  color: #8a94a1;
+  font-size: 12px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.xhs-bottom-nav a.is-active {
+  background: #edf2ff;
+  color: var(--accent);
+}
+
+@media (max-width: 380px) {
+  .xhs-mode .intro h1 {
+    font-size: 34px;
+  }
+
+  .xhs-mode .company-card {
+    flex-basis: 86%;
+  }
+
+  .xhs-mode .chart-canvas {
+    height: 310px;
+  }
+
+  .xhs-mode .metric-chip {
+    flex-basis: 100%;
+  }
+}
+
+@media (min-width: 521px) {
+  .xhs-mode .site-header {
+    border-radius: 0 0 18px 18px;
+  }
+}
